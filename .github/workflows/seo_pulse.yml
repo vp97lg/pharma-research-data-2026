@@ -1,0 +1,27 @@
+name: SEO Pulse Engine
+on:
+  schedule:
+    - cron: '0 * * * *' # Se ejecuta cada hora (24 veces al día)
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Execute SEO Bot
+        run: python scripts/engine.py
+      - name: Commit and Push
+        run: |
+          git config --global user.name "VipRoids-SEO-Bot"
+          git config --global user.email "bot@viproids.com"
+          git add .
+          git commit -m "Data Update: $(date)" || echo "No changes"
+          git push
