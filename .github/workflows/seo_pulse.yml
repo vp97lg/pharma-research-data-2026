@@ -2,7 +2,7 @@ name: SEO OVERDRIVE - VipRoids Content Farm
 
 on:
   schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */3 * * *'   # CADA 3 HORAS = 8 veces al día
   push:
     branches: [main]
   workflow_dispatch:
