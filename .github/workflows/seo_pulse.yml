@@ -1,27 +1,101 @@
-name: SEO Pulse Engine
+name: SEO OVERDRIVE - VipRoids Content Farm
+
 on:
   schedule:
-    - cron: '0 * * * *' # Se ejecuta cada hora (24 veces al día)
+    - cron: '0 */2 * * *'
+  push:
+    branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  refresh:
+  # ═══════════════════════════════════════════
+  # FASE 1: Generar artículos HPLC (White Hat)
+  # ═══════════════════════════════════════════
+  hplc-articles:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    timeout-minutes: 15
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      - name: Execute SEO Bot
+          python-version: '3.11'
+
+      - name: Generate HPLC Article Pages
         run: python scripts/engine.py
-      - name: Commit and Push
+
+      - name: Commit HPLC Pages
         run: |
-          git config --global user.name "VipRoids-SEO-Bot"
-          git config --global user.email "bot@viproids.com"
-          git add .
-          git commit -m "Data Update: $(date)" || echo "No changes"
+          git config user.name "VipRoids SEO Bot"
+          git config user.email "seo@viproids.lab"
+          git add docs/
+          git diff --staged --quiet || git commit -m "HPLC Pulse: Articles updated $(date +%Y-%m-%d-%H%M)"
+          git push
+
+  # ═══════════════════════════════════════════
+  # FASE 2: Generar páginas satélite (Grey Hat)
+  # ═══════════════════════════════════════════
+  satellite-pages:
+    needs: hplc-articles
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pull latest changes
+        run: git pull --rebase origin main
+
+      - name: Generate Satellite Location Pages
+        run: python scripts/satellite_engine.py
+
+      - name: Commit Satellite Pages
+        run: |
+          git config user.name "VipRoids SEO Bot"
+          git config user.email "seo@viproids.lab"
+          git add docs/
+          git diff --staged --quiet || git commit -m "Satellite Pulse: Geo pages updated $(date +%Y-%m-%d-%H%M)"
+          git push
+
+  # ═══════════════════════════════════════════
+  # FASE 3: Inyectar backlinks (Black Hat)
+  # ═══════════════════════════════════════════
+  backlink-injection:
+    needs: satellite-pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pull latest changes
+        run: git pull --rebase origin main
+
+      - name: Generate Backlink Hub Pages
+        run: python scripts/backlink_injector.py
+
+      - name: Commit Backlink Pages
+        run: |
+          git config user.name "VipRoids SEO Bot"
+          git config user.email "seo@viproids.lab"
+          git add docs/
+          git diff --staged --quiet || git commit -m "Backlink Pulse: Hub pages updated $(date +%Y-%m-%d-%H%M)"
           git push
