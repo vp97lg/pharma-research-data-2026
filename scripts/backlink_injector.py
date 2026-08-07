@@ -4,7 +4,7 @@ from datetime import datetime
 
 DATA_PATH = "data/backlink_targets.json"
 OUTPUT_DIR = "docs/guides"
-BASE_URL = "https://TUUSUARIO.github.io/TUREPO"
+BASE_URL = "https://vp97lg.github.io/pharma-research-data-2026"
 
 def load_data():
     with open(DATA_PATH, "r", encoding="utf-8") as f:
