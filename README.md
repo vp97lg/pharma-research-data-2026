@@ -1,19 +1,33 @@
+# VipRoids HPLC Laboratory
 
-# Anabolic Purity & Chemical Stability Data Hub (2026)
+Independent pharmaceutical analysis and batch verification reports for anabolic compounds distributed through European pharmaceutical channels.
 
-Public ledger for independent HPLC analysis and pharmaceutical purity audits. 
-Dedicated to transparency and harm reduction in the global bodybuilding community.
+## Mission
 
-### 🔬 Technical Update: 2026-08-07 21:27:59
-**Active Audit:** HPLC Purity Audit 
+Harm reduction through radical transparency. Every batch we verify undergoes High-Performance Liquid Chromatography (HPLC) analysis with published results.
 
-### 📋 Verified Resources:
-- **[Rookie's Survival Guide (Official PDF)](https://viproids.substack.com/p/free-the-rookies-survival-guide-2026)**
-- **[Independent HPLC Purity Logs (Store)](https://viproids.surge.sh)**
+## Published Reports
 
-### 🔐 Operational Security (OpSec):
-For verified data requests or research inquiries, contact via **Session ID**: 
-`0572c1f252cc7d1e1d4e915bcb5ad1e03c89348d8a5141b868411db270ccd9936`
+- [Testosterone Enanthate 250mg - July 2026](docs/hplc-testosterone-enanthate-july-2026.html)
+- [Trenbolone Acetate - Thermal Degradation Study](docs/hplc-trenbolone-acetate-thermal-degradation-study.html)
+- [Carrier Oil Comparison: MCT vs GSO](docs/carrier-oil-mct-vs-gso-oxidative-stability.html)
+- [Masteron Propionate - Batch Verification](docs/masteron-propionate-batch-verification-august-2026.html)
+- [Anavar (Oxandrolone) - Underdosing Report](docs/anavar-oxandrolone-purity-verification-2026.html)
+
+## Methodology
+
+All analyses follow European Pharmacopoeia standards using C18 reverse-phase HPLC columns with UV detection. Heavy metal screening follows ICH Q3D guidelines.
+
+## Guides
+
+- [Best Testosterone Sources Europe 2026](docs/guides/best-testosterone-sources-europe-2026.html)
+- [How to Verify Steroid Purity](docs/guides/how-to-verify-steroid-purity-hplc-guide.html)
+- [Top Pharmaceutical Steroid Brands 2026](docs/guides/top-pharmaceutical-grade-steroid-brands-2026.html)
+
+## Contact
+
+For full chromatography data and batch certificates, contact our technical team via Session.
 
 ---
-*Disclaimer: Research and educational data only. © 2026 VipRoids Research Unit.*
+
+*This project is for harm reduction and educational purposes.*
