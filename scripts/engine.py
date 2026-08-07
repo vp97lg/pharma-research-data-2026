@@ -1,5 +1,7 @@
 import json
 import os
+import glob
+from datetime import datetime
 
 TEMPLATE_PATH = "templates/article.html"
 DATA_PATH = "data/hplc_logs.json"
@@ -74,9 +76,31 @@ def generate_index(articles):
 </html>"""
 
 def generate_sitemap(articles):
-    urls = f"  <url><loc>{BASE_URL}/</loc><priority>1.0</priority></url>\n"
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    # URL principal
+    urls = f'  <url><loc>{BASE_URL}/</loc><priority>1.0</priority></url>\n'
+
+    # Artículos HPLC (6)
     for a in articles:
-        urls += f"  <url><loc>{BASE_URL}/{a['slug']}.html</loc><lastmod>{a['date']}</lastmod><priority>0.8</priority></url>\n"
+        urls += f'  <url><loc>{BASE_URL}/{a["slug"]}.html</loc><lastmod>{a["date"]}</lastmod><priority>0.8</priority></url>\n'
+
+    # Páginas GEO (750)
+    geo_files = glob.glob("docs/geo/*.html")
+    for f in sorted(geo_files):
+        slug = f.replace("docs/", "").replace("\\", "/")
+        urls += f'  <url><loc>{BASE_URL}/{slug}</loc><lastmod>{today}</lastmod><priority>0.6</priority></url>\n'
+
+    # Guías (5)
+    guide_files = glob.glob("docs/guides/*.html")
+    for f in sorted(guide_files):
+        slug = f.replace("docs/", "").replace("\\", "/")
+        urls += f'  <url><loc>{BASE_URL}/{slug}</loc><lastmod>{today}</lastmod><priority>0.7</priority></url>\n'
+
+    # Índices
+    for index_page in ["geo-index.html", "guides-index.html"]:
+        urls += f'  <url><loc>{BASE_URL}/{index_page}</loc><lastmod>{today}</lastmod><priority>0.5</priority></url>\n'
+
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {urls}</urlset>"""
