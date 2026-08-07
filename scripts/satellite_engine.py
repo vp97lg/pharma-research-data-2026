@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 DATA_PATH = "data/satellite_locations.json"
 OUTPUT_DIR = "docs/geo"
-BASE_URL = "https://TUUSUARIO.github.io/TUREPO"
+BASE_URL = "https://vp97lg.github.io/pharma-research-data-2026"
 
 def load_data():
     with open(DATA_PATH, "r", encoding="utf-8") as f:
