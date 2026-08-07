@@ -4,7 +4,7 @@ import os
 TEMPLATE_PATH = "templates/article.html"
 DATA_PATH = "data/hplc_logs.json"
 OUTPUT_DIR = "docs"
-BASE_URL = "https://TUUSUARIO.github.io/TUREPO"
+BASE_URL = "https://vp97lg.github.io/pharma-research-data-2026"
 
 def load_template():
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
