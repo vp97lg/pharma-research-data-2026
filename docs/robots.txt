@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vp97lg.github.io/pharma-research-data-2026/sitemap.xml
