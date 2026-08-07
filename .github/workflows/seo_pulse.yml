@@ -99,3 +99,33 @@ jobs:
           git add docs/
           git diff --staged --quiet || git commit -m "Backlink Pulse: Hub pages updated $(date +%Y-%m-%d-%H%M)"
           git push
+  # ═══════════════════════════════════════════
+  # FASE 4: Generar sitemap maestro completo
+  # ═══════════════════════════════════════════
+  master-sitemap:
+    needs: backlink-injection
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pull latest changes
+        run: git pull --rebase origin main
+
+      - name: Generate Master Sitemap
+        run: python scripts/generate_sitemap.py
+
+      - name: Commit Master Sitemap
+        run: |
+          git config user.name "VipRoids SEO Bot"
+          git config user.email "seo@viproids.lab"
+          git add docs/sitemap.xml
+          git diff --staged --quiet || git commit -m "Sitemap: Full index updated $(date +%Y-%m-%d-%H%M)"
+          git push
